@@ -158,21 +158,14 @@
           <stop offset=".6" stop-color="#8b949c"/>
           <stop offset="1" stop-color="#2e353c"/>
         </radialGradient>
-        <!-- centre (216,86), rx 206, ry 76, rotated -5deg; endpoints are the exact ends of the major axis -->
-        <path id="mainOrbit" d="M 10.78 103.95 A 206 76 -5 0 1 421.22 68.05 A 206 76 -5 0 1 10.78 103.95 Z"/>
         <!-- centre (215,100), rx 192, ry 56, rotated +8deg -->
         <path id="orbit2" d="M 24.87 73.28 A 192 56 8 0 1 405.13 126.72 A 192 56 8 0 1 24.87 73.28 Z"/>
       </defs>
       <g class="hero-stars"></g>
-      <use href="#mainOrbit" class="orbit-glow" vector-effect="non-scaling-stroke"/>
       <use href="#orbit2" class="orbit-glow" vector-effect="non-scaling-stroke"/>
-      <use href="#mainOrbit" class="orbit-line" stroke-opacity=".75" stroke-width="1.1" vector-effect="non-scaling-stroke"/>
-      <use href="#orbit2" class="orbit-line" stroke-opacity=".55" stroke-width="1" vector-effect="non-scaling-stroke"/>
-      <circle r="4.5" fill="url(#moon)"><animateMotion dur="60s" repeatCount="indefinite" begin="-8s"><mpath href="#mainOrbit"/></animateMotion></circle>
-      <circle r="3.2" fill="url(#moon)"><animateMotion dur="60s" repeatCount="indefinite" begin="-24s"><mpath href="#mainOrbit"/></animateMotion></circle>
-      <circle r="5" fill="url(#moon)"><animateMotion dur="60s" repeatCount="indefinite" begin="-47s"><mpath href="#mainOrbit"/></animateMotion></circle>
+      <use href="#orbit2" class="orbit-line" stroke-opacity=".75" stroke-width="1.1" vector-effect="non-scaling-stroke"/>
       <circle r="3.6" fill="url(#moon)"><animateMotion dur="80s" repeatCount="indefinite" begin="-15s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#orbit2"/></animateMotion></circle>
-      <circle r="2.6" fill="url(#moon)"><animateMotion dur="80s" repeatCount="indefinite" begin="-55s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#orbit2"/></animateMotion></circle>
+      <circle r="4.5" fill="url(#moon)"><animateMotion dur="80s" repeatCount="indefinite" begin="-55s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#orbit2"/></animateMotion></circle>
     </svg>
 
     <div class="avatar"><img src="assets/avatar.webp" alt="Portrait of Your Name" data-field="avatar"></div>
