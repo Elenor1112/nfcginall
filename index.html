@@ -64,15 +64,10 @@
     overflow: hidden; background: #9aa3ab;
   }
   .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .planet { position: absolute; top: 50%; width: 82px; height: 82px; translate: -50% -50%; }
-  .planet img { width: 100%; height: 100%; display: block; animation: float 7s ease-in-out infinite; }
-  .planet.teal { left: 15.2%; }
-  .planet.teal img { filter: drop-shadow(0 0 10px rgba(58, 211, 242, .35)); }
-  .planet.gold { left: 84.6%; }
-  .planet.gold img { filter: drop-shadow(0 0 12px rgba(242, 162, 74, .4)); animation-delay: -3.5s; }
-  .planet svg { position: absolute; inset: -40px -40px; width: calc(100% + 80px); height: calc(100% + 80px); overflow: visible; pointer-events: none; }
-  .planet .back { z-index: -1; }
-  @keyframes float { 50% { transform: translateY(-4px); } }
+  .orbit-line { fill: none; stroke: var(--cyan); stroke-linecap: round; }
+  .orbit-glow { fill: none; stroke: var(--cyan); stroke-opacity: .18; stroke-width: 4; }
+  .hero-stars .tw { animation: twinkle 3.2s ease-in-out infinite; }
+  @keyframes twinkle { 50% { opacity: .2; } }
 
   /* ── Identity ─────────────────────────────────── */
   .name {
@@ -145,7 +140,7 @@
   .slogan { display: block; width: 250px; height: auto; margin-top: 16px; }
 
   @media (prefers-reduced-motion: reduce) {
-    .planet img { animation: none; }
+    .hero-stars .tw { animation: none; }
   }
 </style>
 </head>
@@ -158,11 +153,6 @@
   <div class="hero" aria-hidden="false">
     <svg class="orbits" viewBox="0 0 430 196" preserveAspectRatio="none" aria-hidden="true">
       <defs>
-        <linearGradient id="orbitGrad" x1="0" x2="1">
-          <stop offset="0" stop-color="#7fe6ff" stop-opacity=".75"/>
-          <stop offset=".5" stop-color="#cfd8de" stop-opacity=".45"/>
-          <stop offset="1" stop-color="#ffc47a" stop-opacity=".7"/>
-        </linearGradient>
         <radialGradient id="moon" cx=".35" cy=".35" r=".7">
           <stop offset="0" stop-color="#f2f4f6"/>
           <stop offset=".6" stop-color="#8b949c"/>
@@ -170,33 +160,22 @@
         </radialGradient>
         <!-- centre (216,86), rx 206, ry 76, rotated -5deg; endpoints are the exact ends of the major axis -->
         <path id="mainOrbit" d="M 10.78 103.95 A 206 76 -5 0 1 421.22 68.05 A 206 76 -5 0 1 10.78 103.95 Z"/>
+        <!-- centre (215,100), rx 192, ry 56, rotated +8deg -->
+        <path id="orbit2" d="M 24.87 73.28 A 192 56 8 0 1 405.13 126.72 A 192 56 8 0 1 24.87 73.28 Z"/>
       </defs>
-      <use href="#mainOrbit" fill="none" stroke="url(#orbitGrad)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      <g class="hero-stars"></g>
+      <use href="#mainOrbit" class="orbit-glow" vector-effect="non-scaling-stroke"/>
+      <use href="#orbit2" class="orbit-glow" vector-effect="non-scaling-stroke"/>
+      <use href="#mainOrbit" class="orbit-line" stroke-opacity=".75" stroke-width="1.1" vector-effect="non-scaling-stroke"/>
+      <use href="#orbit2" class="orbit-line" stroke-opacity=".55" stroke-width="1" vector-effect="non-scaling-stroke"/>
       <circle r="4.5" fill="url(#moon)"><animateMotion dur="60s" repeatCount="indefinite" begin="-8s"><mpath href="#mainOrbit"/></animateMotion></circle>
       <circle r="3.2" fill="url(#moon)"><animateMotion dur="60s" repeatCount="indefinite" begin="-24s"><mpath href="#mainOrbit"/></animateMotion></circle>
       <circle r="5" fill="url(#moon)"><animateMotion dur="60s" repeatCount="indefinite" begin="-47s"><mpath href="#mainOrbit"/></animateMotion></circle>
-      <!-- sparkles -->
-      <g fill="#fff">
-        <circle cx="146" cy="16" r="1.1" opacity=".9"/>
-        <circle cx="352" cy="38" r="1.6" fill="#ffb560"/>
-        <circle cx="338" cy="148" r="1.2"/>
-        <circle cx="64" cy="128" r=".9" opacity=".7"/>
-      </g>
+      <circle r="3.6" fill="url(#moon)"><animateMotion dur="80s" repeatCount="indefinite" begin="-15s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#orbit2"/></animateMotion></circle>
+      <circle r="2.6" fill="url(#moon)"><animateMotion dur="80s" repeatCount="indefinite" begin="-55s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#orbit2"/></animateMotion></circle>
     </svg>
 
-    <div class="planet teal">
-      <svg class="back" viewBox="-81 -81 162 162" aria-hidden="true"><path d="M -60.14 -21.89 A 64 16 20 0 1 60.14 21.89" fill="none" stroke="#9eeeff" stroke-opacity=".55" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
-      <img src="assets/planet-teal.webp" alt="">
-      <svg viewBox="-81 -81 162 162" aria-hidden="true"><path d="M 60.14 21.89 A 64 16 20 0 1 -60.14 -21.89" fill="none" stroke="#c8f6ff" stroke-opacity=".8" stroke-width="1.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
-    </div>
-
     <div class="avatar"><img src="assets/avatar.webp" alt="Portrait of Your Name" data-field="avatar"></div>
-
-    <div class="planet gold">
-      <svg class="back" viewBox="-81 -81 162 162" aria-hidden="true"><path d="M -63.44 18.19 A 66 15 -16 0 1 63.44 -18.19" fill="none" stroke="#ffcf8a" stroke-opacity=".5" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
-      <img src="assets/planet-gold.webp" alt="">
-      <svg viewBox="-81 -81 162 162" aria-hidden="true"><path d="M 63.44 -18.19 A 66 15 -16 0 1 -63.44 18.19" fill="none" stroke="#ffd59a" stroke-opacity=".85" stroke-width="1.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
-    </div>
   </div>
 
   <h1 class="name" data-field="name">Your Name</h1>
@@ -280,6 +259,30 @@ const CONFIG = {
     if (!v) { (el.closest("li") || el).remove(); return; }
     el.href = key === "phone" ? `tel:${v.replace(/[^\d+]/g, "")}` : v;
   });
+
+  /* Hero stars: fixed seed so the layout is the same on every load */
+  const g = document.querySelector(".hero-stars");
+  if (g) {
+    let seed = 19;
+    const rnd = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+    let html = "", n = 0, sparkles = 0;
+    while (n < 42) {
+      const x = 4 + rnd() * 422, y = 2 + rnd() * 192;
+      if (Math.hypot(x - 215, y - 98) < 96) continue;          // keep clear of the avatar
+      const cyan = rnd() < 0.25, twinkle = rnd() < 0.45;
+      const cls = twinkle ? ` class="tw"` : "", delay = twinkle ? `animation-delay:${(-rnd() * 3.2).toFixed(2)}s;` : "";
+      const fill = cyan ? "#9eeeff" : "#ffffff";
+      if (sparkles < 8 && rnd() < 0.22) {
+        const k = 2.5 + rnd() * 2.5, w = k * 0.22;
+        html += `<path${cls} fill="${fill}" opacity=".9" style="${delay}filter:drop-shadow(0 0 2px ${fill})" d="M${x} ${y - k}L${x + w} ${y - w}L${x + k} ${y}L${x + w} ${y + w}L${x} ${y + k}L${x - w} ${y + w}L${x - k} ${y}L${x - w} ${y - w}Z"/>`;
+        sparkles++;
+      } else {
+        html += `<circle${cls} style="${delay}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(0.4 + rnd()).toFixed(2)}" fill="${fill}" opacity="${(0.45 + rnd() * 0.5).toFixed(2)}"/>`;
+      }
+      n++;
+    }
+    g.innerHTML = html;
+  }
 
   /* Starfield */
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
