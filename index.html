@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#04070c">
+<title>Your Name · Elenor Marketing Agency</title>
+<meta name="description" content="Your Title at Elenor Marketing Agency — Where Innovation Meets Quality.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500&family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #04070c;
+    --ink: #f4f7fa;
+    --muted: #b9c1c9;
+    --cyan: #3ad3f2;
+    --cyan-soft: rgba(58, 211, 242, .55);
+    --line: rgba(150, 200, 215, .22);
+    --gold: #f2a24a;
+    --col: 430px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+  body {
+    min-height: 100svh;
+    background:
+      radial-gradient(60% 40% at 20% 10%, rgba(30, 70, 95, .18), transparent 70%),
+      radial-gradient(50% 35% at 85% 55%, rgba(20, 60, 80, .14), transparent 70%),
+      var(--bg);
+    color: var(--ink);
+    font-family: "Lexend", system-ui, sans-serif;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  #stars { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+
+  .card {
+    position: relative; z-index: 1;
+    width: 100%; max-width: var(--col);
+    margin: 0 auto;
+    min-height: 100svh;
+    display: flex; flex-direction: column; align-items: center;
+    padding-top: max(74px, env(safe-area-inset-top));
+  }
+
+  .eyebrow {
+    font-size: 10.5px; font-weight: 300;
+    letter-spacing: .36em; text-indent: .36em;
+    color: #d6dde3; text-transform: uppercase;
+  }
+
+  /* ── Orbital hero ─────────────────────────────── */
+  .hero { position: relative; width: 100%; height: 196px; margin-top: 14px; }
+  .hero svg.orbits { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .avatar {
+    position: absolute; left: 50%; top: 50%;
+    width: 168px; height: 168px; translate: -50% -50%;
+    border-radius: 50%;
+    border: 3px solid var(--cyan);
+    box-shadow: 0 0 14px rgba(58, 211, 242, .75), 0 0 34px rgba(58, 211, 242, .3), inset 0 0 10px rgba(58, 211, 242, .35);
+    overflow: hidden; background: #9aa3ab;
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .planet { position: absolute; top: 50%; width: 82px; height: 82px; translate: -50% -50%; }
+  .planet img { width: 100%; height: 100%; display: block; animation: float 7s ease-in-out infinite; }
+  .planet.teal { left: 15.2%; }
+  .planet.teal img { filter: drop-shadow(0 0 10px rgba(58, 211, 242, .35)); }
+  .planet.gold { left: 84.6%; }
+  .planet.gold img { filter: drop-shadow(0 0 12px rgba(242, 162, 74, .4)); animation-delay: -3.5s; }
+  .planet svg { position: absolute; inset: -40px -40px; width: calc(100% + 80px); height: calc(100% + 80px); overflow: visible; pointer-events: none; }
+  .planet .back { z-index: -1; }
+  @keyframes float { 50% { transform: translateY(-4px); } }
+
+  /* ── Identity ─────────────────────────────────── */
+  .name {
+    margin-top: 14px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: clamp(44px, 14vw, 60px); font-weight: 800;
+    letter-spacing: -.035em; line-height: 1;
+    text-shadow: 0 0 22px rgba(255, 255, 255, .18);
+  }
+  .title { margin-top: 4px; font-size: clamp(22px, 6.5vw, 27px); font-weight: 300; color: var(--muted); letter-spacing: .01em; }
+
+  /* ── Contact rows ─────────────────────────────── */
+  .contacts { list-style: none; width: calc(100% - 64px); margin-top: 22px; border-top: 1px solid var(--line); }
+  .contacts li { border-bottom: 1px solid var(--line); }
+  .contacts a {
+    display: flex; align-items: center; gap: 22px;
+    height: 66px; padding: 0 2px;
+    transition: background-color .2s ease;
+  }
+  .contacts a:active { background: rgba(58, 211, 242, .06); }
+  .contacts .text { flex: 1; font-size: 19.5px; font-weight: 300; letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .contacts .arrow { width: 24px; height: 24px; color: var(--cyan); flex: none; margin-right: 2px; transition: transform .2s ease; }
+  @media (hover: hover) { .contacts a:hover .arrow { transform: translate(2px, -2px); } }
+
+  .ring {
+    flex: none; display: grid; place-items: center;
+    width: 43px; height: 43px; border-radius: 50%;
+    border: 2px solid var(--cyan); color: var(--cyan);
+    box-shadow: 0 0 8px rgba(58, 211, 242, .35), inset 0 0 6px rgba(58, 211, 242, .18);
+  }
+  .ring svg { width: 24px; height: 24px; }
+  .ring .glyph { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -.02em; line-height: 1; margin-top: -2px; }
+
+  /* ── Socials ─────────────────────────────────── */
+  .socials { display: flex; gap: 26px; margin-top: 21px; }
+  .socials .ring { width: 47px; height: 47px; transition: box-shadow .2s ease, transform .2s ease; }
+  .socials .ring svg { width: 26px; height: 26px; }
+  .socials .ring .glyph { font-size: 24px; }
+  @media (hover: hover) { .socials .ring:hover { transform: translateY(-2px); box-shadow: 0 0 16px rgba(58, 211, 242, .6); } }
+
+  /* ── Planet horizon + footer ──────────────────── */
+  .horizon {
+    position: relative; width: 100%;
+    margin-top: 10px; padding: 48px 0 max(36px, env(safe-area-inset-bottom));
+    display: flex; flex-direction: column; align-items: center;
+    flex: 1;
+  }
+  .horizon::before {
+    content: ""; position: absolute; z-index: -1;
+    left: 50%; top: 0; translate: -50% 0;
+    width: 1240px; height: 1240px; border-radius: 50%;
+    background:
+      radial-gradient(closest-side at 50% 50%, rgba(3, 7, 11, .8) 90%, rgba(10, 40, 55, .8) 97.5%, rgba(45, 130, 160, .9) 99.6%, #9becff 100%);
+    box-shadow:
+      0 -1px 10px rgba(120, 225, 255, .55),
+      0 -4px 40px rgba(58, 190, 230, .25),
+      inset 0 2px 1px rgba(200, 245, 255, .7),
+      inset 0 10px 30px rgba(58, 190, 230, .28);
+  }
+  .horizon::after {           /* bright highlight at the top of the arc */
+    content: ""; position: absolute; z-index: -1;
+    left: 50%; top: -14px; translate: -50% 0;
+    width: 260px; height: 30px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(220, 250, 255, .55), rgba(120, 220, 255, .18) 55%, transparent);
+    filter: blur(2px);
+  }
+  .agency { font-size: 20px; font-weight: 500; letter-spacing: .01em; }
+  .slogan { display: block; width: 250px; height: auto; margin-top: 16px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .planet img { animation: none; }
+  }
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<main class="card">
+  <p class="eyebrow">Elenor Marketing Agency</p>
+
+  <div class="hero" aria-hidden="false">
+    <svg class="orbits" viewBox="0 0 430 196" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="orbitGrad" x1="0" x2="1">
+          <stop offset="0" stop-color="#7fe6ff" stop-opacity=".75"/>
+          <stop offset=".5" stop-color="#cfd8de" stop-opacity=".45"/>
+          <stop offset="1" stop-color="#ffc47a" stop-opacity=".7"/>
+        </linearGradient>
+        <radialGradient id="moon" cx=".35" cy=".35" r=".7">
+          <stop offset="0" stop-color="#f2f4f6"/>
+          <stop offset=".6" stop-color="#8b949c"/>
+          <stop offset="1" stop-color="#2e353c"/>
+        </radialGradient>
+        <!-- centre (216,86), rx 206, ry 76, rotated -5deg; endpoints are the exact ends of the major axis -->
+        <path id="mainOrbit" d="M 10.78 103.95 A 206 76 -5 0 1 421.22 68.05 A 206 76 -5 0 1 10.78 103.95 Z"/>
+      </defs>
+      <use href="#mainOrbit" fill="none" stroke="url(#orbitGrad)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      <circle r="4.5" fill="url(#moon)"><animateMotion dur="60s" repeatCount="indefinite" begin="-8s"><mpath href="#mainOrbit"/></animateMotion></circle>
+      <circle r="3.2" fill="url(#moon)"><animateMotion dur="60s" repeatCount="indefinite" begin="-24s"><mpath href="#mainOrbit"/></animateMotion></circle>
+      <circle r="5" fill="url(#moon)"><animateMotion dur="60s" repeatCount="indefinite" begin="-47s"><mpath href="#mainOrbit"/></animateMotion></circle>
+      <!-- sparkles -->
+      <g fill="#fff">
+        <circle cx="146" cy="16" r="1.1" opacity=".9"/>
+        <circle cx="352" cy="38" r="1.6" fill="#ffb560"/>
+        <circle cx="338" cy="148" r="1.2"/>
+        <circle cx="64" cy="128" r=".9" opacity=".7"/>
+      </g>
+    </svg>
+
+    <div class="planet teal">
+      <svg class="back" viewBox="-81 -81 162 162" aria-hidden="true"><path d="M -60.14 -21.89 A 64 16 20 0 1 60.14 21.89" fill="none" stroke="#9eeeff" stroke-opacity=".55" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+      <img src="assets/planet-teal.webp" alt="">
+      <svg viewBox="-81 -81 162 162" aria-hidden="true"><path d="M 60.14 21.89 A 64 16 20 0 1 -60.14 -21.89" fill="none" stroke="#c8f6ff" stroke-opacity=".8" stroke-width="1.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+    </div>
+
+    <div class="avatar"><img src="assets/avatar.webp" alt="Portrait of Your Name" data-field="avatar"></div>
+
+    <div class="planet gold">
+      <svg class="back" viewBox="-81 -81 162 162" aria-hidden="true"><path d="M -63.44 18.19 A 66 15 -16 0 1 63.44 -18.19" fill="none" stroke="#ffcf8a" stroke-opacity=".5" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+      <img src="assets/planet-gold.webp" alt="">
+      <svg viewBox="-81 -81 162 162" aria-hidden="true"><path d="M 63.44 -18.19 A 66 15 -16 0 1 -63.44 18.19" fill="none" stroke="#ffd59a" stroke-opacity=".85" stroke-width="1.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+    </div>
+  </div>
+
+  <h1 class="name" data-field="name">Your Name</h1>
+  <p class="title" data-field="title">Your Title</p>
+
+  <ul class="contacts">
+    <li><a data-link="phone" href="tel:+20XXXXXXXXXX">
+      <span class="ring"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span>
+      <span class="text" data-field="phoneLabel">+20 XXX XXX XXXX</span>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 19 5M8 5h11v11"/></svg>
+    </a></li>
+    <li><a data-link="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+      <span class="ring"><span class="glyph">in</span></span>
+      <span class="text" data-field="linkedinLabel">Your LinkedIn</span>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 19 5M8 5h11v11"/></svg>
+    </a></li>
+    <li><a data-link="website" href="https://elenor-marketing.com/" target="_blank" rel="noopener">
+      <span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M4.5 7.5h15M4.5 16.5h15"/></svg></span>
+      <span class="text" data-field="websiteLabel">elenor-marketing.com</span>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 19 5M8 5h11v11"/></svg>
+    </a></li>
+  </ul>
+
+  <nav class="socials" aria-label="Social profiles">
+    <a class="ring" data-link="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a class="ring" data-link="facebook" href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.6 22v-8.2h2.8l.42-3.2H13.6V8.56c0-.93.26-1.56 1.6-1.56h1.7V4.14A23 23 0 0 0 14.4 4c-2.47 0-4.16 1.5-4.16 4.27v2.36H7.45v3.2h2.79V22z"/></svg>
+    </a>
+    <a class="ring" data-link="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <span class="glyph">in</span>
+    </a>
+    <a class="ring" data-link="behance" href="https://www.behance.net/" target="_blank" rel="noopener" aria-label="Behance">
+      <span class="glyph" style="font-size:18px">Bē</span>
+    </a>
+  </nav>
+
+  <footer class="horizon">
+    <p class="agency">Elenor Marketing Agency</p>
+    <img class="slogan" src="assets/slogan.webp" alt="Where Innovation Meets Quality" width="600" height="398">
+  </footer>
+</main>
+
+<script>
+/* ════════════════════════════════════════════════════════════════
+   EDIT YOUR DETAILS HERE — everything on the card comes from this.
+   Leave a link as "" to hide that row / icon.
+   ════════════════════════════════════════════════════════════════ */
+const CONFIG = {
+  name: "Your Name",
+  title: "Your Title",
+  avatar: "assets/avatar.webp",          // square image, e.g. assets/me.jpg
+
+  phone: "+20XXXXXXXXXX",                // used for the call link
+  phoneLabel: "+20 XXX XXX XXXX",        // shown on the card
+  linkedin: "https://www.linkedin.com/",
+  linkedinLabel: "Your LinkedIn",
+  website: "https://elenor-marketing.com/",
+  websiteLabel: "elenor-marketing.com",
+
+  instagram: "https://www.instagram.com/",
+  facebook: "https://www.facebook.com/",
+  behance: "https://www.behance.net/",
+};
+
+(() => {
+  const C = CONFIG;
+  document.querySelectorAll("[data-field]").forEach((el) => {
+    const v = C[el.dataset.field];
+    if (v == null) return;
+    if (el.tagName === "IMG") el.src = v; else el.textContent = v;
+  });
+  if (C.name) {
+    document.title = `${C.name} · Elenor Marketing Agency`;
+    document.querySelector(".avatar img").alt = `Portrait of ${C.name}`;
+  }
+  document.querySelectorAll("[data-link]").forEach((el) => {
+    const key = el.dataset.link;
+    const v = C[key];
+    if (!v) { (el.closest("li") || el).remove(); return; }
+    el.href = key === "phone" ? `tel:${v.replace(/[^\d+]/g, "")}` : v;
+  });
+
+  /* Starfield */
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) document.querySelector(".orbits")?.pauseAnimations?.();
+  const cv = document.getElementById("stars");
+  const ctx = cv.getContext("2d");
+  let stars = [], w = 0, h = 0, dpr = 1;
+  function build() {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    w = innerWidth; h = innerHeight;
+    cv.width = w * dpr; cv.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round((w * h) / 2600);
+    stars = Array.from({ length: n }, () => {
+      const big = Math.random() < 0.06;
+      return {
+        x: Math.random() * w, y: Math.random() * h,
+        r: big ? 0.9 + Math.random() * 0.9 : 0.25 + Math.random() * 0.6,
+        a: 0.25 + Math.random() * 0.6,
+        hue: Math.random() < 0.3 ? "150,225,255" : Math.random() < 0.05 ? "255,190,120" : "255,255,255",
+        glow: big, tw: Math.random() * Math.PI * 2, sp: 0.4 + Math.random() * 1.2,
+      };
+    });
+  }
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h);
+    for (const s of stars) {
+      const a = reduce ? s.a : s.a * (0.65 + 0.35 * Math.sin(s.tw + t * 0.001 * s.sp));
+      ctx.fillStyle = `rgba(${s.hue},${a})`;
+      if (s.glow) { ctx.shadowColor = `rgba(${s.hue},${a})`; ctx.shadowBlur = 6; } else ctx.shadowBlur = 0;
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
+    }
+    if (!reduce) requestAnimationFrame(draw);
+  }
+  build(); requestAnimationFrame(draw);
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { build(); if (reduce) draw(0); }, 150); });
+})();
+</script>
+</body>
+</html>
