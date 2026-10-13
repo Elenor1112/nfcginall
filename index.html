@@ -115,14 +115,16 @@
 
   /* ── Planet horizon + footer ──────────────────── */
   .horizon {
-    position: relative; width: 100%;
-    margin-top: 10px; padding: 48px 0 max(36px, env(safe-area-inset-bottom));
+    position: relative;
+    width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);
+    margin-top: -20px; padding: 78px 0 max(28px, env(safe-area-inset-bottom));
     display: flex; flex-direction: column; align-items: center;
     flex: 1;
+    overflow: clip;             /* the sphere is huge: cut it off so the page ends after the slogan */
   }
   .horizon::before {
     content: ""; position: absolute; z-index: -1;
-    left: 50%; top: 0; translate: -50% 0;
+    left: 50%; top: 30px; translate: -50% 0;
     width: 1240px; height: 1240px; border-radius: 50%;
     background:
       radial-gradient(closest-side at 50% 50%, rgba(3, 7, 11, .8) 90%, rgba(10, 40, 55, .8) 97.5%, rgba(45, 130, 160, .9) 99.6%, #9becff 100%);
@@ -134,7 +136,7 @@
   }
   .horizon::after {           /* bright highlight at the top of the arc */
     content: ""; position: absolute; z-index: -1;
-    left: 50%; top: -14px; translate: -50% 0;
+    left: 50%; top: 16px; translate: -50% 0;
     width: 260px; height: 30px; border-radius: 50%;
     background: radial-gradient(closest-side, rgba(220, 250, 255, .55), rgba(120, 220, 255, .18) 55%, transparent);
     filter: blur(2px);
