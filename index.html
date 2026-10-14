@@ -4,8 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#04070c">
-<title>Emad Samir · Elenor Marketing Agency</title>
-<meta name="description" content="Elenor's CEO at Elenor Marketing Agency — Where Innovation Meets Quality.">
+<title>Elenor Marketing Agency</title>
+<meta name="description" content="Elenor Marketing Agency — Where Innovation Meets Quality.">
+<script src="people.js"></script>
+<script>
+/* Pick the person from the URL: /malak  (or ?p=malak when previewing locally).
+   Done here, before the body is drawn, so another person's details never flash. */
+const SLUG = (new URLSearchParams(location.search).get("p")
+  || location.pathname.split("/").filter(Boolean).pop() || "").toLowerCase();
+const CONFIG = PEOPLE[SLUG] || PEOPLE[DEFAULT_PERSON];
+if (CONFIG.avatar) document.head.appendChild(Object.assign(document.createElement("link"), { rel: "preload", as: "image", href: CONFIG.avatar }));
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500&family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
@@ -44,7 +53,9 @@
     min-height: 100svh;
     display: flex; flex-direction: column; align-items: center;
     padding-top: max(74px, env(safe-area-inset-top));
+    visibility: hidden;         /* shown once the person's details are filled in */
   }
+  .ready .card { visibility: visible; }
 
   .eyebrow {
     font-size: 10.5px; font-weight: 300;
@@ -108,6 +119,21 @@
   .socials .ring .glyph { font-size: 24px; }
   @media (hover: hover) { .socials .ring:hover { transform: translateY(-2px); box-shadow: 0 0 16px rgba(58, 211, 242, .6); } }
 
+  /* ── Save contact ────────────────────────────── */
+  .save {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    width: calc(100% - 64px); height: 56px; margin-top: 28px;
+    border: 2px solid var(--cyan); border-radius: 28px;
+    background: rgba(58, 211, 242, .1); color: var(--ink);
+    font: 400 18px/1 "Lexend", system-ui, sans-serif; letter-spacing: .04em;
+    box-shadow: 0 0 12px rgba(58, 211, 242, .35), inset 0 0 8px rgba(58, 211, 242, .18);
+    cursor: pointer; -webkit-tap-highlight-color: transparent;
+    transition: background-color .2s ease, box-shadow .2s ease, transform .1s ease;
+  }
+  .save svg { width: 24px; height: 24px; color: var(--cyan); flex: none; }
+  .save:active { transform: scale(.98); background: rgba(58, 211, 242, .18); }
+  @media (hover: hover) { .save:hover { box-shadow: 0 0 20px rgba(58, 211, 242, .6), inset 0 0 8px rgba(58, 211, 242, .25); } }
+
   /* ── Planet horizon + footer ──────────────────── */
   .horizon {
     position: relative;
@@ -168,41 +194,46 @@
       <circle r="4.5" fill="url(#moon)"><animateMotion dur="80s" repeatCount="indefinite" begin="-55s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#orbit2"/></animateMotion></circle>
     </svg>
 
-    <div class="avatar"><img src="assets/emad-samir.webp" alt="Portrait of Emad Samir" data-field="avatar"></div>
+    <div class="avatar"><img alt="" data-field="avatar"></div>
   </div>
 
-  <h1 class="name" data-field="name">Emad Samir</h1>
-  <p class="title" data-field="title">Elenor's CEO</p>
+  <h1 class="name" data-field="name"></h1>
+  <p class="title" data-field="title"></p>
 
   <ul class="contacts">
-    <li><a data-link="phone" href="tel:+201001615729">
+    <li><a data-link="phone" href="#">
       <span class="ring"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span>
-      <span class="text" data-field="phoneLabel">+20 100 161 5729</span>
+      <span class="text" data-field="phoneLabel"></span>
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 19 5M8 5h11v11"/></svg>
     </a></li>
-    <li><a data-link="linkedin" href="https://www.linkedin.com/in/emad-samir-rizk/" target="_blank" rel="noopener">
+    <li><a data-link="linkedin" href="#" target="_blank" rel="noopener">
       <span class="ring"><span class="glyph">in</span></span>
-      <span class="text" data-field="linkedinLabel">emad-samir-rizk</span>
+      <span class="text" data-field="linkedinLabel"></span>
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 19 5M8 5h11v11"/></svg>
     </a></li>
-    <li><a data-link="website" href="https://elenor-marketing.com/" target="_blank" rel="noopener">
+    <li><a data-link="website" href="#" target="_blank" rel="noopener">
       <span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M4.5 7.5h15M4.5 16.5h15"/></svg></span>
-      <span class="text" data-field="websiteLabel">elenor-marketing.com</span>
+      <span class="text" data-field="websiteLabel"></span>
       <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19 19 5M8 5h11v11"/></svg>
     </a></li>
   </ul>
 
   <nav class="socials" aria-label="Social profiles">
-    <a class="ring" data-link="whatsapp" href="https://wa.me/" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <a class="ring" data-link="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.17-1.5A9.9 9.9 0 1 0 12.04 2zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.07.89.9-3-.2-.31a8.2 8.2 0 1 1 6.85 3.75zm4.5-6.14c-.25-.12-1.47-.72-1.7-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.78.97-.15.16-.29.18-.54.06a6.7 6.7 0 0 1-3.34-2.92c-.25-.43.25-.4.72-1.34.08-.16.04-.3-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.41-.56-.42h-.47a.9.9 0 0 0-.66.31 2.77 2.77 0 0 0-.86 2.06 4.8 4.8 0 0 0 1 2.55c.12.16 1.73 2.64 4.2 3.7 1.56.68 2.17.73 2.95.62.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
     </a>
-    <a class="ring" data-link="instagram" href="https://www.instagram.com/elenor.marketing/" target="_blank" rel="noopener" aria-label="Instagram">
+    <a class="ring" data-link="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></svg>
     </a>
-    <a class="ring" data-link="facebook" href="https://www.facebook.com/elenor.marketing" target="_blank" rel="noopener" aria-label="Facebook">
+    <a class="ring" data-link="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.6 22v-8.2h2.8l.42-3.2H13.6V8.56c0-.93.26-1.56 1.6-1.56h1.7V4.14A23 23 0 0 0 14.4 4c-2.47 0-4.16 1.5-4.16 4.27v2.36H7.45v3.2h2.79V22z"/></svg>
     </a>
   </nav>
+
+  <button class="save" type="button" id="save-contact">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M19 8v6M16 11h6"/></svg>
+    Save Contact
+  </button>
 
   <footer class="horizon">
     <p class="agency">Elenor Marketing Agency</p>
@@ -210,13 +241,7 @@
   </footer>
 </main>
 
-<script src="people.js"></script>
 <script>
-/* Pick the person from the URL: /malak  (or ?p=malak when previewing locally) */
-const SLUG = (new URLSearchParams(location.search).get("p")
-  || location.pathname.split("/").filter(Boolean).pop() || "").toLowerCase();
-const CONFIG = PEOPLE[SLUG] || PEOPLE[DEFAULT_PERSON];
-
 (() => {
   const C = CONFIG;
   document.querySelectorAll("[data-field]").forEach((el) => {
@@ -240,6 +265,57 @@ const CONFIG = PEOPLE[SLUG] || PEOPLE[DEFAULT_PERSON];
   if (socials && !socials.children.length) socials.remove();
   document.querySelector('meta[name="description"]').content =
     `${C.title ? C.title + " at " : ""}Elenor Marketing Agency — Where Innovation Meets Quality.`;
+  document.documentElement.classList.add("ready");
+
+  /* Save contact: a vCard 3.0 file (the version both iOS and Android read fully).
+     The photo is re-encoded as JPEG because iOS Contacts ignores WebP. It is
+     prepared on load so the tap can start the download straight away. */
+  const esc = (s) => String(s).replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/([,;])/g, "\\$1");
+  const fold = (line) => line.length <= 75 ? line : line.match(/.{1,74}/g).join("\r\n ");
+  let photo = "";
+  function vcard() {
+    const parts = (C.name || "").trim().split(/\s+/);
+    const last = parts.length > 1 ? parts.pop() : "";
+    const lines = [
+      "BEGIN:VCARD", "VERSION:3.0",
+      `N:${esc(last)};${esc(parts.join(" "))};;;`,
+      `FN:${esc(C.name || "")}`,
+      "ORG:Elenor Marketing Agency",
+    ];
+    if (C.title) lines.push(`TITLE:${esc(C.title)}`);
+    if (C.phone) lines.push(`TEL;TYPE=CELL,VOICE:${C.phone.replace(/[^\d+]/g, "")}`);
+    if (C.whatsapp && C.whatsapp.replace(/\D/g, "") !== (C.phone || "").replace(/\D/g, ""))
+      lines.push(`item9.TEL:${C.whatsapp.replace(/[^\d+]/g, "")}`, "item9.X-ABLabel:WhatsApp");
+    if (C.website) lines.push(`URL;TYPE=WORK:${C.website}`);
+    [["linkedin", "LinkedIn"], ["instagram", "Instagram"], ["facebook", "Facebook"]].forEach(([k, label], i) => {
+      if (!C[k]) return;
+      lines.push(`item${i + 1}.URL:${C[k]}`, `item${i + 1}.X-ABLabel:${label}`,
+        `X-SOCIALPROFILE;TYPE=${k}:${C[k]}`);
+    });
+    if (photo) lines.push(`PHOTO;ENCODING=b;TYPE=JPEG:${photo}`);
+    lines.push("END:VCARD");
+    return lines.map(fold).join("\r\n") + "\r\n";
+  }
+  if (C.avatar) {
+    const img = new Image();
+    img.onload = () => {
+      try {
+        const size = 400, cv = document.createElement("canvas");
+        const s = Math.min(img.naturalWidth, img.naturalHeight);
+        cv.width = cv.height = size;
+        cv.getContext("2d").drawImage(img, (img.naturalWidth - s) / 2, (img.naturalHeight - s) / 2, s, s, 0, 0, size, size);
+        photo = cv.toDataURL("image/jpeg", 0.85).split(",")[1];
+      } catch { /* e.g. opened from file:// — save without the photo */ }
+    };
+    img.src = C.avatar;
+  }
+  document.getElementById("save-contact").addEventListener("click", () => {
+    const file = `${(C.name || "contact").replace(/[^\w-]+/g, "_")}.vcf`;
+    const url = URL.createObjectURL(new Blob([vcard()], { type: "text/vcard;charset=utf-8" }));
+    const a = Object.assign(document.createElement("a"), { href: url, download: file });
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  });
 
   /* Hero stars: fixed seed so the layout is the same on every load */
   const g = document.querySelector(".hero-stars");
