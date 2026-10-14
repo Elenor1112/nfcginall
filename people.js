@@ -26,6 +26,7 @@ window.PEOPLE = {
     avatar: "assets/malak-mahgoub.webp",
     phone: "+201070796877",
     phoneLabel: "+20 107 079 6877",
+    whatsapp: "+201070796877",                 // WhatsApp chat icon (number with country code)
     linkedin: "https://www.linkedin.com/in/malak-mahgoub-540514228/",
     linkedinLabel: "malak-mahgoub",
     website: "https://elenor-marketing.com/",
