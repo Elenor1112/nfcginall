@@ -12,6 +12,7 @@ window.PEOPLE = {
     avatar: "assets/emad-samir.webp",          // square image
     phone: "+201001615729",                    // used for the call link
     phoneLabel: "+20 100 161 5729",            // shown on the card
+    whatsapp: "+201001615729",                 // WhatsApp chat icon (number with country code)
     linkedin: "https://www.linkedin.com/in/emad-samir-rizk/",
     linkedinLabel: "emad-samir-rizk",
     website: "https://elenor-marketing.com/",
