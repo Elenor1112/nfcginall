@@ -87,6 +87,8 @@ if (CONFIG.avatar) document.head.appendChild(Object.assign(document.createElemen
     font-size: clamp(44px, 14vw, 60px); font-weight: 800;
     letter-spacing: -.035em; line-height: 1;
     text-shadow: 0 0 22px rgba(255, 255, 255, .18);
+    white-space: nowrap; text-align: center;
+    max-width: calc(100% - 32px);
   }
   .title { margin-top: 4px; font-size: clamp(22px, 6.5vw, 27px); font-weight: 300; color: var(--muted); letter-spacing: .01em; }
 
@@ -253,6 +255,17 @@ if (CONFIG.avatar) document.head.appendChild(Object.assign(document.createElemen
   if (C.name) {
     document.title = `${C.name} · Elenor Marketing Agency`;
     document.querySelector(".avatar img").alt = `Portrait of ${C.name}`;
+    // Keep long names on one line: shrink the font until it fits the column.
+    const nameEl = document.querySelector(".name");
+    const fitName = () => {
+      nameEl.style.fontSize = "";
+      const size = parseFloat(getComputedStyle(nameEl).fontSize);
+      const ratio = nameEl.clientWidth / nameEl.scrollWidth;
+      if (ratio < 1) nameEl.style.fontSize = `${Math.floor(size * ratio)}px`;
+    };
+    fitName();
+    document.fonts.ready.then(fitName);
+    addEventListener("resize", fitName);
   }
   document.querySelectorAll("[data-link]").forEach((el) => {
     const key = el.dataset.link;
