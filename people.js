@@ -23,7 +23,7 @@ window.PEOPLE = {
 
   malak: {
     name: "Malak Mahgoub",
-    title: "",
+    title: "PR Manager",
     avatar: "assets/malak-mahgoub.webp",
     phone: "+201070796877",
     phoneLabel: "+20 107 079 6877",
