@@ -207,33 +207,20 @@
   </footer>
 </main>
 
+<script src="people.js"></script>
 <script>
-/* ════════════════════════════════════════════════════════════════
-   EDIT YOUR DETAILS HERE — everything on the card comes from this.
-   Leave a link as "" to hide that row / icon.
-   ════════════════════════════════════════════════════════════════ */
-const CONFIG = {
-  name: "Emad Samir",
-  title: "Elenor's CEO",
-  avatar: "assets/emad-samir.webp",          // square image, e.g. assets/me.jpg
-
-  phone: "+201001615729",                // used for the call link
-  phoneLabel: "+20 100 161 5729",        // shown on the card
-  linkedin: "https://www.linkedin.com/in/emad-samir-rizk/",
-  linkedinLabel: "emad-samir-rizk",
-  website: "https://elenor-marketing.com/",
-  websiteLabel: "elenor-marketing.com",
-
-  instagram: "https://www.instagram.com/elenor.marketing/",
-  facebook: "https://www.facebook.com/elenor.marketing",
-};
+/* Pick the person from the URL: /malak  (or ?p=malak when previewing locally) */
+const SLUG = (new URLSearchParams(location.search).get("p")
+  || location.pathname.split("/").filter(Boolean).pop() || "").toLowerCase();
+const CONFIG = PEOPLE[SLUG] || PEOPLE[DEFAULT_PERSON];
 
 (() => {
   const C = CONFIG;
   document.querySelectorAll("[data-field]").forEach((el) => {
     const v = C[el.dataset.field];
-    if (v == null) return;
-    if (el.tagName === "IMG") el.src = v; else el.textContent = v;
+    if (el.tagName === "IMG") { if (v) el.src = v; return; }
+    if (!v) { el.remove(); return; }
+    el.textContent = v;
   });
   if (C.name) {
     document.title = `${C.name} · Elenor Marketing Agency`;
@@ -245,6 +232,10 @@ const CONFIG = {
     if (!v) { (el.closest("li") || el).remove(); return; }
     el.href = key === "phone" ? `tel:${v.replace(/[^\d+]/g, "")}` : v;
   });
+  const socials = document.querySelector(".socials");
+  if (socials && !socials.children.length) socials.remove();
+  document.querySelector('meta[name="description"]').content =
+    `${C.title ? C.title + " at " : ""}Elenor Marketing Agency — Where Innovation Meets Quality.`;
 
   /* Hero stars: fixed seed so the layout is the same on every load */
   const g = document.querySelector(".hero-stars");

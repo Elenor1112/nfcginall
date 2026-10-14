@@ -1,0 +1,4 @@
+{
+  "trailingSlash": false,
+  "rewrites": [{ "source": "/:slug", "destination": "/index.html" }]
+}
