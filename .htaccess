@@ -1,0 +1,23 @@
+# Apache (cPanel) version of vercel.json: every /name URL shows index.html
+Options -Indexes
+RewriteEngine On
+
+# Keep repo internals private
+RewriteRule (^|/)\.git - [F,L]
+RewriteRule ^(README\.md|vercel\.json)$ - [F,L]
+
+# /malak/ -> /malak (a trailing slash would break the relative asset paths)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# /malak -> index.html (people.js picks the person from the URL)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^[A-Za-z0-9_-]+$ index.html [L]
+
+# Phones should fetch fresh details after you edit people.js
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|js)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
