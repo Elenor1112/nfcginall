@@ -1,4 +1,7 @@
 {
   "trailingSlash": false,
-  "rewrites": [{ "source": "/:slug", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/ag-solutions/:slug", "destination": "/ag-solutions/index.html" },
+    { "source": "/:slug", "destination": "/index.html" }
+  ]
 }

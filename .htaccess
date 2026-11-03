@@ -10,6 +10,11 @@ RewriteRule ^(README\.md|vercel\.json)$ - [F,L]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ /$1 [R=301,L]
 
+# /ag-solutions/mohamed -> ag-solutions/index.html (AG Solutions cards)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ag-solutions/[A-Za-z0-9_-]+$ ag-solutions/index.html [L]
+
 # /malak -> index.html (people.js picks the person from the URL)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
