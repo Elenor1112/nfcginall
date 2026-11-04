@@ -95,6 +95,8 @@ if (CONFIG.avatar) document.head.appendChild(Object.assign(document.createElemen
     font-size: 19px; font-weight: 800;
     box-shadow: inset 0 1px 0 rgba(255, 250, 225, .6), inset 0 -2px 0 rgba(90, 65, 20, .45), 0 6px 16px rgba(0, 0, 0, .55);
   }
+  .member { margin-top: 12px; font-size: 16px; font-weight: 600; color: #e6dcc6; }
+  .member b { margin-inline-start: 6px; font-weight: 800; color: var(--gold); letter-spacing: .04em; }
 
   /* ── Contact rows ─────────────────────────────── */
   .contacts { list-style: none; width: calc(100% - 56px); margin-top: 26px; border-top: 1px solid var(--line); }
@@ -169,6 +171,7 @@ if (CONFIG.avatar) document.head.appendChild(Object.assign(document.createElemen
 
   <h1 class="name" data-field="name"></h1>
   <p class="title" data-field="title"></p>
+  <p class="member">رقم العضوية <b dir="ltr" data-field="membership"></b></p>
 
   <ul class="contacts">
     <li><a data-link="phone" href="#">
@@ -220,6 +223,7 @@ if (CONFIG.avatar) document.head.appendChild(Object.assign(document.createElemen
     if (!v) { el.remove(); return; }
     el.textContent = v;
   });
+  if (!C.membership) document.querySelector(".member")?.remove();
   const nameEl = document.querySelector(".name");
   if (nameEl) {
     document.title = `${C.name} · ${ORG}`;
@@ -272,6 +276,7 @@ if (CONFIG.avatar) document.head.appendChild(Object.assign(document.createElemen
       `ORG:${esc(ORG)}`,
     ];
     if (C.title) lines.push(`TITLE:${esc(C.title)}`);
+    if (C.membership) lines.push(`NOTE:${esc(`رقم العضوية ${C.membership}`)}`);
     if (C.phone) lines.push(`TEL;TYPE=CELL,VOICE:${C.phone.replace(/[^\d+]/g, "")}`);
     if (C.whatsapp && C.whatsapp.replace(/\D/g, "") !== (C.phone || "").replace(/\D/g, ""))
       lines.push(`item9.TEL:${C.whatsapp.replace(/[^\d+]/g, "")}`, "item9.X-ABLabel:WhatsApp");

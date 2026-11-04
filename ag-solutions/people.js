@@ -11,10 +11,11 @@ window.PEOPLE = {
     name: "محمد مجدي الصاوي السيد صلاح",
     nameLines: ["محمد مجدي الصاوي", "السيد صلاح"],   // how the name breaks on the card
     title: "رئيس مجلس الإدارة",
+    membership: "1200",                        // رقم العضوية — Membership Number
     avatar: "assets/mohamed.webp",             // portrait image (4:5)
-    phone: "+201000000000",                    // TODO: real number — used for the call link
-    phoneLabel: "+20 100 000 0000",            // TODO: real number — shown on the card
-    whatsapp: "+201000000000",                 // TODO: real number — WhatsApp chat icon
+    phone: "+201002558572",                    // TODO: real number — used for the call link
+    phoneLabel: "+20 100 255 8572",            // TODO: real number — shown on the card
+    whatsapp: "+201002558572",                 // TODO: real number — WhatsApp chat icon
     email: "",                                 // e.g. "name@example.com"
     website: "",                               // e.g. "https://example.com/"
     websiteLabel: "",                          // e.g. "example.com"
